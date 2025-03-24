@@ -30,12 +30,22 @@ jobs:
       - name: Trivy file scan
         run: trivy fs . > trivyfd.txt
 
-      # Build the image and push it to Docker Hub
-      - name: Docker build and push
-        run: |
-          docker build -t tic-tac-toe .
-          docker tag tic-tac-toe sevenajay/tic-tac-toe:latest
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-          docker push sevenajay/tic-tac-toe:latest
+        # Build the image and push it to Docker Hub
+      - name: Build and push Docker image
         env:
           DOCKER_CLI_ACI: 1
+        run: |
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          docker build -t sevenajay/tic-tac-toe:latest .
+          docker push sevenajay/tic-tac-toe:latest
+
+
+      # # Build the image and push it to Docker Hub
+      # - name: Docker build and push
+      #   run: |
+      #     docker build -t tic-tac-toe .
+      #     docker tag tic-tac-toe sevenajay/tic-tac-toe:latest
+      #     echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+      #     docker push sevenajay/tic-tac-toe:latest
+      #   env:
+      #     DOCKER_CLI_ACI: 1
