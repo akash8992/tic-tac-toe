@@ -25,5 +25,13 @@ jobs:
         #trivy file scan
       - name: Trivy file scan
         run: trivy fs . > trivyfd.txt
-        
+
+  #build the image 
+      - name: Docker build and push # Run commands to build and push Docker
+        run: docker build -t tic-tac-toe .
+             docker tag tic-tac-toe sevenajay/tic-tac-toe:latest
+             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} 
+             docker push sevenajay/tic-tac-toe:latest 
+        env: 
+              DOCKER_CLI_ACI: 1        
         
