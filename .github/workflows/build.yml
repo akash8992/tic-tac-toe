@@ -38,3 +38,5 @@ jobs:
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           docker build -t akash8992/tic-tac-toe:latest .
           docker push akash8992/tic-tac-toe:latest
+
+          
