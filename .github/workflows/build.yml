@@ -30,7 +30,7 @@ jobs:
       - name: Trivy file scan
         run: trivy fs . > trivyfd.txt
 
-      # Build the image and push it to Docker Hub
+      # Build the image and push it to Docker Hub  
       - name: Build and push Docker image
         env:
           DOCKER_CLI_ACI: 1
