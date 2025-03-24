@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           docker build -t sevenajay/tic-tac-toe:latest .
-          docker push sevenajay/tic-tac-toe:latest
+          docker push akash8992/tic-tac-toe:latest
 
 
       # # Build the image and push it to Docker Hub
