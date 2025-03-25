@@ -38,7 +38,10 @@ jobs:
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           docker build -t akash8992/tic-tac-toe:latest .
           docker push akash8992/tic-tac-toe:latest
-
+          
+      # Trivy image scanning
+      - name: Image scan
+        run: trivy image akash8992/tic-tac-toe:latest > trivyimage.txt
           
 
           
